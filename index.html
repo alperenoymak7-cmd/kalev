@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KALEV • 6th Grade English Unit Hub • Interactive Quiz Arcade</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f8fafc;
+        }
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Fredoka', sans-serif;
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-6px);
+        }
+        .pulse-subtle {
+            animation: pulse 2.5s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+    </style>
+</head>
+<body class="min-h-screen text-slate-800 flex flex-col justify-between relative selection:bg-indigo-500 selection:text-white">
+
+    <!-- Filigran / Watermark Logo Background Layer -->
+    <div class="fixed inset-0 pointer-events-none z-0 flex items-center justify-center opacity-[0.06] overflow-hidden">
+        <img src="images.jpg" alt="Kalev Watermark Logo" class="w-[75vw] max-w-2xl object-contain select-none">
+    </div>
+
+    <!-- Top Navigation Header -->
+    <header class="bg-indigo-600 text-white shadow-lg sticky top-0 z-40 border-b border-indigo-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-wrap justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <!-- Logo Watermark / Image in Header -->
+                <div class="w-12 h-12 rounded-2xl bg-white overflow-hidden flex items-center justify-center shadow-inner border-2 border-indigo-400 p-1">
+                    <img src="images.jpg" alt="Kalev Logo" class="w-full h-full object-contain">
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="bg-amber-300 text-slate-900 text-[10px] font-black px-2 py-0.5 rounded-md uppercase tracking-widest shadow-sm">KALEV</span>
+                        <span class="text-xs text-indigo-200 font-bold uppercase tracking-wider">Official Unit Hub</span>
+                    </div>
+                    <h1 class="text-xl sm:text-2xl font-bold tracking-tight">kalev • 6th Grade English Unit Hub</h1>
+                </div>
+            </div>
+
+            <!-- Global Actions & Quick Stats -->
+            <div class="flex items-center gap-3">
+                <button onclick="openAllTopicsModal()" class="bg-indigo-700 hover:bg-indigo-800 text-indigo-100 px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold border border-indigo-500 transition shadow-sm flex items-center gap-2">
+                    <i class="fa-solid fa-list-check"></i> <span>All Topics Index</span>
+                </button>
+                <div class="hidden sm:flex items-center gap-2 bg-indigo-700/80 px-3.5 py-2 rounded-2xl border border-indigo-500 text-xs font-bold text-indigo-100">
+                    <i class="fa-solid fa-graduation-cap text-amber-300"></i>
+                    <span>10 Interactive Games</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 pt-8 pb-4 relative z-10 w-full">
+        <div class="bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 text-white rounded-3xl p-6 sm:p-10 shadow-xl border-4 border-indigo-200 relative overflow-hidden">
+            <div class="absolute -right-10 -bottom-10 opacity-10 text-9xl pointer-events-none font-bold">
+                A1
+            </div>
+            <div class="max-w-2xl relative z-10">
+                <span class="bg-white/20 backdrop-blur-md text-white text-xs font-extrabold px-3 py-1.5 rounded-full uppercase tracking-wider mb-3 inline-block">
+                    kalev • Teacher's Interactive Resource Center
+                </span>
+                <h2 class="text-2xl sm:text-4xl font-bold tracking-tight mb-3">
+                    Welcome Students & Teachers! 👋
+                </h2>
+                <p class="text-indigo-100 text-sm sm:text-base leading-relaxed mb-5">
+                    Select any grammar or vocabulary topic below to launch its immersive interactive game. All original quiz files are securely embedded in individual sections so students can practice, reinforce topics, and enjoy learning without distortion!
+                </p>
+                <div class="flex flex-wrap gap-2 text-xs font-bold text-indigo-900">
+                    <span class="bg-amber-300 px-3 py-1 rounded-full shadow-sm">✨ Instant Feedback</span>
+                    <span class="bg-sky-200 px-3 py-1 rounded-full shadow-sm">🔊 Arcade Sound Effects</span>
+                    <span class="bg-emerald-200 px-3 py-1 rounded-full shadow-sm">🏆 Score & Streak Tracking</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Area: Topic Hub & Interactive Viewer -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex-grow flex flex-col gap-6 relative z-10 w-full">
+
+        <!-- Topic Selection Grid Header -->
+        <div class="flex flex-wrap items-center justify-between gap-4">
+            <div>
+                <h3 class="text-xl sm:text-2xl font-bold text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-gamepad text-indigo-600"></i> Select a Grammar Topic
+                </h3>
+                <p class="text-xs sm:text-sm text-slate-500">Click any card below to load the interactive quiz game instantly in the immersive preview zone.</p>
+            </div>
+            <div class="flex items-center gap-2">
+                <span class="text-xs font-bold text-slate-400">Filter Units:</span>
+                <button onclick="filterTopics('all')" id="filter-all" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-indigo-600 text-white shadow-sm transition">All (10)</button>
+                <button onclick="filterTopics('grammar')" id="filter-grammar" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition">Grammar</button>
+                <button onclick="filterTopics('vocab')" id="filter-vocab" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition">Vocabulary</button>
+            </div>
+        </div>
+
+        <!-- Topic Cards Grid -->
+        <div id="topics-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            
+            <!-- Topic 10 -->
+            <div class="topic-card bg-white rounded-3xl p-5 border-2 border-slate-200 shadow-md card-hover flex flex-col justify-between cursor-pointer group" data-category="grammar" onclick="loadQuiz('topic_10_adverbs_of_manner_comparative_adverbs.html', 'Topic 10: Adverb Speed Racer')">
+                <div>
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="bg-indigo-100 text-indigo-800 text-xs font-extrabold px-3 py-1 rounded-full">Topic 10</span>
+                        <span class="w-8 h-8 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition"><i class="fa-solid fa-play text-xs"></i></span>
+                    </div>
+                    <h4 class="font-bold text-slate-800 text-base sm:text-lg group-hover:text-indigo-600 transition mb-1">Adverb Speed Racer</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">Adverbs & Comparative Adverbs (more quickly than, faster than).</p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-indigo-600">
+                    <span><i class="fa-solid fa-bolt-lightning text-yellow-500"></i> 10 Questions</span>
+                    <span class="underline group-hover:translate-x-1 transition-transform">Play Game &rarr;</span>
+                </div>
+            </div>
+
+            <!-- Topic 9 -->
+            <div class="topic-card bg-white rounded-3xl p-5 border-2 border-slate-200 shadow-md card-hover flex flex-col justify-between cursor-pointer group" data-category="vocab" onclick="loadQuiz('topic_9_adjective_preposition_collocations_game.html', 'Topic 9: Adjective + Preposition Collocations')">
+                <div>
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="bg-emerald-100 text-emerald-800 text-xs font-extrabold px-3 py-1 rounded-full">Topic 9</span>
+                        <span class="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:bg-emerald-600 group-hover:text-white transition"><i class="fa-solid fa-play text-xs"></i></span>
+                    </div>
+                    <h4 class="font-bold text-slate-800 text-base sm:text-lg group-hover:text-emerald-600 transition mb-1">Word Match Master</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">Adjective + Preposition Collocations (afraid of, interested in, good at).</p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-emerald-600">
+                    <span><i class="fa-solid fa-puzzle-piece text-emerald-500"></i> 10 Questions</span>
+                    <span class="underline group-hover:translate-x-1 transition-transform">Play Game &rarr;</span>
+                </div>
+            </div>
+
+            <!-- Topic 8 -->
+            <div class="topic-card bg-white rounded-3xl p-5 border-2 border-slate-200 shadow-md card-hover flex flex-col justify-between cursor-pointer group" data-category="grammar" onclick="loadQuiz('topic_8_past_obligation_paragraph_builder_game.html', 'Topic 8: Past Obligation Paragraph Builder')">
+                <div>
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="bg-purple-100 text-purple-800 text-xs font-extrabold px-3 py-1 rounded-full">Topic 8</span>
+                        <span class="w-8 h-8 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center group-hover:bg-purple-600 group-hover:text-white transition"><i class="fa-solid fa-play text-xs"></i></span>
+                    </div>
+                    <h4 class="font-bold text-slate-800 text-base sm:text-lg group-hover:text-purple-600 transition mb-1">Past Obligations Builder</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">Paragraph Builder using Had to & Didn't have to.</p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-purple-600">
+                    <span><i class="fa-solid fa-feather-pointed text-amber-500"></i> 7 Paragraph Stages</span>
+                    <span class="underline group-hover:translate-x-1 transition-transform">Play Game &rarr;</span>
+                </div>
+            </div>
+
+            <!-- Topic 7 -->
+            <div class="topic-card bg-white rounded-3xl p-5 border-2 border-slate-200 shadow-md card-hover flex flex-col justify-between cursor-pointer group" data-category="grammar" onclick="loadQuiz('topic_7_past_ability_paragraph_builder_game.html', 'Topic 7: Past Ability Paragraph Builder')">
+                <div>
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="bg-emerald-100 text-emerald-800 text-xs font-extrabold px-3 py-1 rounded-full">Topic 7</span>
+                        <span class="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:bg-emerald-600 group-hover:text-white transition"><i class="fa-solid fa-play text-xs"></i></span>
+                    </div>
+                    <h4 class="font-bold text-slate-800 text-base sm:text-lg group-hover:text-emerald-600 transition mb-1">Time Machine Paragraphs</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">Past Abilities (Could / Couldn't) & paragraph building.</p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-emerald-600">
+                    <span><i class="fa-solid fa-wand-magic-sparkles text-amber-500"></i> 7 Stages</span>
+                    <span class="underline group-hover:translate-x-1 transition-transform">Play Game &rarr;</span>
+                </div>
+            </div>
+
+            <!-- Topic 6 -->
+            <div class="topic-card bg-white rounded-3xl p-5 border-2 border-slate-200 shadow-md card-hover flex flex-col justify-between cursor-pointer group" data-category="grammar" onclick="loadQuiz('topic_6_family_rule_stories_paragraph_builder.html', 'Topic 6: Family Rule Stories Paragraph Builder')">
+                <div>
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="bg-blue-100 text-blue-800 text-xs font-extrabold px-3 py-1 rounded-full">Topic 6</span>
+                        <span class="w-8 h-8 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition"><i class="fa-solid fa-play text-xs"></i></span>
+                    </div>
+                    <h4 class="font-bold text-slate-800 text-base sm:text-lg group-hover:text-blue-600 transition mb-1">Family Rule Stories</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">Paragraph Builder using connectors: both, but, because.</p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-blue-600">
+                    <span><i class="fa-solid fa-book-open text-blue-500"></i> 12 Missions</span>
+                    <span class="underline group-hover:translate-x-1 transition-transform">Play Game &rarr;</span>
+                </div>
+            </div>
+
+            <!-- Topic 5 -->
+            <div class="topic-card bg-white rounded-3xl p-5 border-2 border-slate-200 shadow-md card-hover flex flex-col justify-between cursor-pointer group" data-category="grammar" onclick="loadQuiz('topic_5_duty_free_had_to_vs_didn_t_have_to_quiz.html', 'Topic 5: Duty Free - Had to vs Didn\'t have to')">
+                <div>
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="bg-teal-100 text-teal-800 text-xs font-extrabold px-3 py-1 rounded-full">Topic 5</span>
+                        <span class="w-8 h-8 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center group-hover:bg-teal-600 group-hover:text-white transition"><i class="fa-solid fa-play text-xs"></i></span>
+                    </div>
+                    <h4 class="font-bold text-slate-800 text-base sm:text-lg group-hover:text-teal-600 transition mb-1">Duty Free Challenge</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">Had to vs. Didn't have to (Past Obligations & Necessity).</p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-teal-600">
+                    <span><i class="fa-solid fa-shield-halved text-teal-500"></i> 16 Questions</span>
+                    <span class="underline group-hover:translate-x-1 transition-transform">Play Game &rarr;</span>
+                </div>
+            </div>
+
+            <!-- Topic 4 -->
+            <div class="topic-card bg-white rounded-3xl p-5 border-2 border-slate-200 shadow-md card-hover flex flex-col justify-between cursor-pointer group" data-category="grammar" onclick="loadQuiz('topic_4_time_traveler_could_vs_couldn_t_quiz.html', 'Topic 4: Time Traveler - Could vs Couldn\'t')">
+                <div>
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="bg-violet-100 text-violet-800 text-xs font-extrabold px-3 py-1 rounded-full">Topic 4</span>
+                        <span class="w-8 h-8 rounded-xl bg-violet-50 text-violet-600 flex items-center justify-center group-hover:bg-violet-600 group-hover:text-white transition"><i class="fa-solid fa-play text-xs"></i></span>
+                    </div>
+                    <h4 class="font-bold text-slate-800 text-base sm:text-lg group-hover:text-violet-600 transition mb-1">Time Traveler Challenge</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">Could vs. Couldn't (Past Abilities & Childhood Skills).</p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-violet-600">
+                    <span><i class="fa-solid fa-clock-rotate-left text-violet-500"></i> 16 Questions</span>
+                    <span class="underline group-hover:translate-x-1 transition-transform">Play Game &rarr;</span>
+                </div>
+            </div>
+
+            <!-- Topic 3 -->
+            <div class="topic-card bg-white rounded-3xl p-5 border-2 border-slate-200 shadow-md card-hover flex flex-col justify-between cursor-pointer group" data-category="grammar" onclick="loadQuiz('rule_master_must_vs_mustn_t_quiz.html', 'Topic 3: Rule Master - Must vs Mustn\'t')">
+                <div>
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="bg-indigo-100 text-indigo-800 text-xs font-extrabold px-3 py-1 rounded-full">Topic 3</span>
+                        <span class="w-8 h-8 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition"><i class="fa-solid fa-play text-xs"></i></span>
+                    </div>
+                    <h4 class="font-bold text-slate-800 text-base sm:text-lg group-hover:text-indigo-600 transition mb-1">Rule Master Challenge</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">Must vs. Mustn't (Obligations & Strict Prohibitions).</p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-indigo-600">
+                    <span><i class="fa-solid fa-triangle-exclamation text-amber-500"></i> 16 Questions</span>
+                    <span class="underline group-hover:translate-x-1 transition-transform">Play Game &rarr;</span>
+                </div>
+            </div>
+
+            <!-- Topic 2 -->
+            <div class="topic-card bg-white rounded-3xl p-5 border-2 border-slate-200 shadow-md card-hover flex flex-col justify-between cursor-pointer group" data-category="grammar" onclick="loadQuiz('topic_2_boss_or_buddy_make_vs_let_quiz.html', 'Topic 2: Boss or Buddy - Make vs Let')">
+                <div>
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="bg-sky-100 text-sky-800 text-xs font-extrabold px-3 py-1 rounded-full">Topic 2</span>
+                        <span class="w-8 h-8 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center group-hover:bg-sky-600 group-hover:text-white transition"><i class="fa-solid fa-play text-xs"></i></span>
+                    </div>
+                    <h4 class="font-bold text-slate-800 text-base sm:text-lg group-hover:text-sky-600 transition mb-1">Boss or Buddy?</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">Make vs. Let (Force vs. Permission & Present Simple rules).</p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-sky-600">
+                    <span><i class="fa-solid fa-user-group text-sky-500"></i> 18 Questions</span>
+                    <span class="underline group-hover:translate-x-1 transition-transform">Play Game &rarr;</span>
+                </div>
+            </div>
+
+            <!-- Topic 1 -->
+            <div class="topic-card bg-white rounded-3xl p-5 border-2 border-slate-200 shadow-md card-hover flex flex-col justify-between cursor-pointer group" data-category="vocab" onclick="loadQuiz('topic_1_citizen_hero_academy_quiz.html', 'Topic 1: Citizen Hero Academy')">
+                <div>
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="bg-amber-100 text-amber-800 text-xs font-extrabold px-3 py-1 rounded-full">Topic 1</span>
+                        <span class="w-8 h-8 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center group-hover:bg-amber-600 group-hover:text-white transition"><i class="fa-solid fa-play text-xs"></i></span>
+                    </div>
+                    <h4 class="font-bold text-slate-800 text-base sm:text-lg group-hover:text-amber-600 transition mb-1">Citizen Hero Academy</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">Rights, Rules & Word Power (-ful, im-, un-, dis-).</p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-amber-600">
+                    <span><i class="fa-solid fa-star text-amber-500"></i> 16 Questions</span>
+                    <span class="underline group-hover:translate-x-1 transition-transform">Play Game &rarr;</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Immersive Preview & Isolated Game Zone -->
+        <div id="game-zone" class="mt-6 bg-white rounded-3xl shadow-2xl border-4 border-indigo-300 overflow-hidden flex flex-col transition-all duration-300">
+            <!-- Game Zone Header Bar -->
+            <div class="bg-indigo-900 text-white p-4 px-6 flex flex-wrap justify-between items-center gap-3">
+                <div class="flex items-center gap-3">
+                    <span id="active-game-icon" class="text-xl">🎮</span>
+                    <div>
+                        <h3 id="active-game-title" class="font-bold text-base sm:text-lg">Select a Topic Above to Start Playing!</h3>
+                        <p class="text-xs text-indigo-200">Running in secure isolated interactive container</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <button onclick="reloadActiveGame()" class="bg-indigo-800 hover:bg-indigo-700 text-white text-xs font-bold px-3.5 py-2 rounded-xl border border-indigo-700 transition flex items-center gap-1.5" title="Restart Game">
+                        <i class="fa-solid fa-rotate-right"></i> <span>Restart</span>
+                    </button>
+                    <button onclick="toggleFullscreenGame()" class="bg-indigo-800 hover:bg-indigo-700 text-white text-xs font-bold px-3.5 py-2 rounded-xl border border-indigo-700 transition flex items-center gap-1.5" title="Toggle Fullscreen">
+                        <i class="fa-solid fa-expand"></i> <span>Fullscreen</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Iframe Container for Original HTML Quiz Files -->
+            <div id="iframe-wrapper" class="w-full h-[680px] bg-slate-50 relative flex items-center justify-center">
+                <div id="placeholder-message" class="text-center p-8 max-w-md">
+                    <div class="w-20 h-20 bg-indigo-100 text-indigo-600 rounded-3xl mx-auto flex items-center justify-center text-3xl mb-4 shadow-sm border-2 border-indigo-200 animate-bounce">
+                        👆
+                    </div>
+                    <h4 class="font-bold text-slate-800 text-xl mb-2">Ready to Play?</h4>
+                    <p class="text-slate-500 text-sm mb-5">Click on any of the 10 topic cards above to load your interactive quiz game right here without disrupting anything!</p>
+                    <button onclick="loadQuiz('topic_10_adverbs_of_manner_comparative_adverbs.html', 'Topic 10: Adverb Speed Racer')" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-6 py-3 rounded-2xl text-sm shadow-lg transition">
+                        Quick Start Topic 10 🚀
+                    </button>
+                </div>
+                <iframe id="quiz-iframe" src="" class="w-full h-full border-0 hidden" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-8 mt-12 border-t border-slate-800 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+            <div>
+                <p class="text-white font-bold text-sm">kalev • 6th Grade English Unit Hub • Interactive Quiz Collection</p>
+                <p class="text-xs text-slate-500 mt-1">Designed for teachers and students to reinforce A1 English curriculum topics securely.</p>
+            </div>
+            <div class="text-xs text-slate-500">
+                <span>🔒 Secure Isolated Section Containers</span> • <span>✨ 100% Original Code Integrity</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal: All Topics Index -->
+    <div id="all-topics-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 shadow-2xl border-4 border-indigo-400 max-h-[85vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-indigo-800 flex items-center gap-2">
+                    <i class="fa-solid fa-list-check"></i> All Topics Index (1 - 10)
+                </h3>
+                <button onclick="openAllTopicsModal()" class="text-slate-400 hover:text-slate-600 text-2xl font-bold">&times;</button>
+            </div>
+            
+            <div class="space-y-2.5 text-xs sm:text-sm">
+                <div onclick="loadQuizAndCloseModal('topic_10_adverbs_of_manner_comparative_adverbs.html', 'Topic 10: Adverb Speed Racer')" class="p-3 bg-indigo-50 hover:bg-indigo-100 rounded-2xl border border-indigo-200 cursor-pointer flex justify-between items-center transition">
+                    <div><b>Topic 10:</b> Adverbs & Comparative Adverbs (Adverb Speed Racer)</div>
+                    <span class="bg-indigo-600 text-white px-3 py-1 rounded-xl text-xs font-bold">Play &rarr;</span>
+                </div>
+                <div onclick="loadQuizAndCloseModal('topic_9_adjective_preposition_collocations_game.html', 'Topic 9: Adjective + Preposition Collocations')" class="p-3 bg-emerald-50 hover:bg-emerald-100 rounded-2xl border border-emerald-200 cursor-pointer flex justify-between items-center transition">
+                    <div><b>Topic 9:</b> Adjective + Preposition Collocations (Word Match Master)</div>
+                    <span class="bg-emerald-600 text-white px-3 py-1 rounded-xl text-xs font-bold">Play &rarr;</span>
+                </div>
+                <div onclick="loadQuizAndCloseModal('topic_8_past_obligation_paragraph_builder_game.html', 'Topic 8: Past Obligation Paragraph Builder')" class="p-3 bg-purple-50 hover:bg-purple-100 rounded-2xl border border-purple-200 cursor-pointer flex justify-between items-center transition">
+                    <div><b>Topic 8:</b> Past Obligations (Had to / Didn't have to)</div>
+                    <span class="bg-purple-600 text-white px-3 py-1 rounded-xl text-xs font-bold">Play &rarr;</span>
+                </div>
+                <div onclick="loadQuizAndCloseModal('topic_7_past_ability_paragraph_builder_game.html', 'Topic 7: Past Ability Paragraph Builder')" class="p-3 bg-emerald-50 hover:bg-emerald-100 rounded-2xl border border-emerald-200 cursor-pointer flex justify-between items-center transition">
+                    <div><b>Topic 7:</b> Past Abilities (Could / Couldn't Paragraph Builder)</div>
+                    <span class="bg-emerald-600 text-white px-3 py-1 rounded-xl text-xs font-bold">Play &rarr;</span>
+                </div>
+                <div onclick="loadQuizAndCloseModal('topic_6_family_rule_stories_paragraph_builder.html', 'Topic 6: Family Rule Stories Paragraph Builder')" class="p-3 bg-blue-50 hover:bg-blue-100 rounded-2xl border border-blue-200 cursor-pointer flex justify-between items-center transition">
+                    <div><b>Topic 6:</b> Family Rule Stories (both, but, because)</div>
+                    <span class="bg-blue-600 text-white px-3 py-1 rounded-xl text-xs font-bold">Play &rarr;</span>
+                </div>
+                <div onclick="loadQuizAndCloseModal('topic_5_duty_free_had_to_vs_didn_t_have_to_quiz.html', 'Topic 5: Duty Free - Had to vs Didn\'t have to')" class="p-3 bg-teal-50 hover:bg-teal-100 rounded-2xl border border-teal-200 cursor-pointer flex justify-between items-center transition">
+                    <div><b>Topic 5:</b> Duty Free (Had to vs. Didn't have to Challenge)</div>
+                    <span class="bg-teal-600 text-white px-3 py-1 rounded-xl text-xs font-bold">Play &rarr;</span>
+                </div>
+                <div onclick="loadQuizAndCloseModal('topic_4_time_traveler_could_vs_couldn_t_quiz.html', 'Topic 4: Time Traveler - Could vs Couldn\'t')" class="p-3 bg-violet-50 hover:bg-violet-100 rounded-2xl border border-violet-200 cursor-pointer flex justify-between items-center transition">
+                    <div><b>Topic 4:</b> Time Traveler (Could vs. Couldn't Challenge)</div>
+                    <span class="bg-violet-600 text-white px-3 py-1 rounded-xl text-xs font-bold">Play &rarr;</span>
+                </div>
+                <div onclick="loadQuizAndCloseModal('rule_master_must_vs_mustn_t_quiz.html', 'Topic 3: Rule Master - Must vs Mustn\'t')" class="p-3 bg-indigo-50 hover:bg-indigo-100 rounded-2xl border border-indigo-200 cursor-pointer flex justify-between items-center transition">
+                    <div><b>Topic 3:</b> Rule Master (Must vs. Mustn't Challenge)</div>
+                    <span class="bg-indigo-600 text-white px-3 py-1 rounded-xl text-xs font-bold">Play &rarr;</span>
+                </div>
+                <div onclick="loadQuizAndCloseModal('topic_2_boss_or_buddy_make_vs_let_quiz.html', 'Topic 2: Boss or Buddy - Make vs Let')" class="p-3 bg-sky-50 hover:bg-sky-100 rounded-2xl border border-sky-200 cursor-pointer flex justify-between items-center transition">
+                    <div><b>Topic 2:</b> Boss or Buddy (Make vs. Let Challenge)</div>
+                    <span class="bg-sky-600 text-white px-3 py-1 rounded-xl text-xs font-bold">Play &rarr;</span>
+                </div>
+                <div onclick="loadQuizAndCloseModal('topic_1_citizen_hero_academy_quiz.html', 'Topic 1: Citizen Hero Academy')" class="p-3 bg-amber-50 hover:bg-amber-100 rounded-2xl border border-amber-200 cursor-pointer flex justify-between items-center transition">
+                    <div><b>Topic 1:</b> Citizen Hero Academy (Rights, Rules & Word Power)</div>
+                    <span class="bg-amber-600 text-white px-3 py-1 rounded-xl text-xs font-bold">Play &rarr;</span>
+                </div>
+            </div>
+
+            <button onclick="openAllTopicsModal()" class="mt-5 w-full bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold py-2.5 rounded-xl text-sm">Close Index</button>
+        </div>
+    </div>
+
+    <!-- JavaScript Controller -->
+    <script>
+        let currentUrl = '';
+        let currentTitle = '';
+
+        function loadQuiz(url, title) {
+            currentUrl = url;
+            currentTitle = title;
+            
+            const iframe = document.getElementById('quiz-iframe');
+            const placeholder = document.getElementById('placeholder-message');
+            const titleEl = document.getElementById('active-game-title');
+            
+            placeholder.classList.add('hidden');
+            iframe.classList.remove('hidden');
+            iframe.src = url;
+            titleEl.textContent = title;
+
+            // Scroll smoothly to game zone
+            document.getElementById('game-zone').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function loadQuizAndCloseModal(url, title) {
+            openAllTopicsModal();
+            loadQuiz(url, title);
+        }
+
+        function reloadActiveGame() {
+            if (currentUrl) {
+                const iframe = document.getElementById('quiz-iframe');
+                iframe.src = currentUrl;
+            }
+        }
+
+        function toggleFullscreenGame() {
+            const gameZone = document.getElementById('game-zone');
+            if (!document.fullscreenElement) {
+                gameZone.requestFullscreen().catch(err => {
+                    alert(`Error attempting to enable fullscreen: ${err.message}`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        function openAllTopicsModal() {
+            const modal = document.getElementById('all-topics-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        function filterTopics(category) {
+            const cards = document.querySelectorAll('.topic-card');
+            const btnAll = document.getElementById('filter-all');
+            const btnGrammar = document.getElementById('filter-grammar');
+            const btnVocab = document.getElementById('filter-vocab');
+
+            // Reset button states
+            btnAll.className = "px-3 py-1.5 rounded-xl text-xs font-bold bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition";
+            btnGrammar.className = "px-3 py-1.5 rounded-xl text-xs font-bold bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition";
+            btnVocab.className = "px-3 py-1.5 rounded-xl text-xs font-bold bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition";
+
+            if (category === 'all') {
+                btnAll.className = "px-3 py-1.5 rounded-xl text-xs font-bold bg-indigo-600 text-white shadow-sm transition";
+                cards.forEach(card => card.style.display = 'flex');
+            } else if (category === 'grammar') {
+                btnGrammar.className = "px-3 py-1.5 rounded-xl text-xs font-bold bg-indigo-600 text-white shadow-sm transition";
+                cards.forEach(card => {
+                    if (card.dataset.category === 'grammar') {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            } else if (category === 'vocab') {
+                btnVocab.className = "px-3 py-1.5 rounded-xl text-xs font-bold bg-indigo-600 text-white shadow-sm transition";
+                cards.forEach(card => {
+                    if (card.dataset.category === 'vocab') {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>
